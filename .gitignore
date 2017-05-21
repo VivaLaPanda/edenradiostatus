@@ -15,3 +15,6 @@
 
 # Debug files
 debug*
+
+# Secrets
+secrets.go
