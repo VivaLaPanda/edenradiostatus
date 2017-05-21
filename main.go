@@ -44,6 +44,7 @@ func main() {
 		case 'k':
 			stopCode = true
 		case 'p':
+			fmt.Println("Forcing poll")
 			var err error
 			djWas, err = task(djWas)
 
@@ -53,15 +54,18 @@ func main() {
 				return
 			}
 		case 'd':
+			fmt.Println("Forcing poll without tweeting")
 			DEBUG = true
 			var err error
 			djWas, err = task(djWas)
-			fmt.Printf("%v, %v", djWas, err)
+			fmt.Printf("%v, %v\n", djWas, err)
 			DEBUG = false
 		default:
 			fmt.Println("I'm sorry, I didn't understand that...")
 			fmt.Printf("Usage:\n  Kill: 'k'\n  Force Poll: 'p'\n  Debug Poll: 'd'\n")
 		}
+
+		fmt.Println("What do you want to do?")
 	}
 
 	fmt.Printf("Shutting down...\n")
@@ -94,6 +98,8 @@ func task(djWas string) (string, error) {
 		if djIs == "Bot-sama" {
 			if djWas != "" {
 				tweetText = fmt.Sprintf("%v is headed off.", djWas)
+			} else {
+				tweetText = fmt.Sprintf("Bot waking up. Good Morning!")
 			}
 		} else {
 			tweetText = fmt.Sprintf("LIVE on Eden: %v", djIs)
